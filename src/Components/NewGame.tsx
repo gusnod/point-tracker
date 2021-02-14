@@ -4,13 +4,15 @@ import DB, { IGame, IPlayer } from '../Database';
 
 interface IProps {
     db: DB
+    onInsert: () => void
 }
 
-const insertGame = async (db: DB, game: IGame) => {
+const insertGame = async (db: DB, game: IGame, onUpdate: () => void) => {
     await db.games.add(game).then(k => (console.log(k)));
+    onUpdate();
 }
 
-const NewGame = ({ db }: IProps) => {
+const NewGame = ({ db, onInsert }: IProps) => {
     const [gameName, setGameName] = useState<string>("");
     const [players, setPlayers] = useState<string[]>(["",]);
     return <form onSubmit={e => {
@@ -24,7 +26,7 @@ const NewGame = ({ db }: IProps) => {
             settings: { reverseScore: false }
         }
 
-        insertGame(db, game);
+        insertGame(db, game, onInsert);
     }}
 
     >

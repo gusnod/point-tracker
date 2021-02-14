@@ -20,7 +20,7 @@ const App = () => {
 
     return <div>
         <ListGames games={games} />
-        <NewGame db={db} />
+        <NewGame db={db} onInsert={() => insertGames(setGames, db)} />
     </div>
 
 }
