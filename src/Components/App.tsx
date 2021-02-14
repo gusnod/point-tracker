@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import DB, { IGame } from '../Database';
+import ActiveGame from './ActiveGame';
 import ListGames from './ListGames';
 import NewGame from './NewGame';
 
@@ -18,8 +19,12 @@ const App = () => {
         insertGames(setGames, db);
     }, []);
 
+    if (activeGame !== null) {
+        return <ActiveGame game={activeGame} backAction={() => setActiveGame(null)} />
+    }
+
     return <div>
-        <ListGames games={games} />
+        <ListGames games={games} setGame={setActiveGame} />
         <NewGame db={db} onInsert={() => insertGames(setGames, db)} />
     </div>
 
