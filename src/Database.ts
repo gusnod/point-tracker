@@ -2,11 +2,12 @@ import Dexie from "dexie";
 
 
 interface IGame {
-    id: number,
+    id?: number,
     title: string,
     active: boolean,
     players: IPlayer[],
-    rounds: IRound[]
+    rounds: IRound[],
+    settings: ISettings
 }
 
 interface IRound {
@@ -18,19 +19,23 @@ interface IPlayer {
     name: string
 }
 
+interface ISettings {
+    reverseScore: boolean
+}
 
-class TheDatabase extends Dexie {
-    people: Dexie.Table<IPlayer, number>;
+
+class DB extends Dexie {
+    games: Dexie.Table<IGame, number>;
 
     constructor() {
         super("GamesDatabase");
         this.version(1).stores({
-            people: '++id, title, active, players, number'
+            games: '++id, title, active, players, rounds, settings'
         });
 
-        this.people = this.table("people");
+        this.games = this.table("games");
     }
 }
 
-export { IGame, IPlayer, IRound };
-export default TheDatabase;
+export { IGame, IPlayer, IRound, ISettings };
+export default DB;
