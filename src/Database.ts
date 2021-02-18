@@ -11,6 +11,10 @@ interface IGame {
 }
 
 interface IRound {
+    scores: IScore[]
+}
+
+interface IScore {
     player: IPlayer,
     score: number
 }
@@ -37,5 +41,5 @@ class DB extends Dexie {
     }
 }
 
-export { IGame, IPlayer, IRound, ISettings };
+export { IGame, IPlayer, IRound, IScore, ISettings };
 export default DB;
