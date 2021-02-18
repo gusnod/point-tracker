@@ -33,7 +33,7 @@ const ActiveGame = ({ game, backAction, updateGame }: IProps) => {
         <button onClick={backAction}>Back</button>
         <h1>{game.title}</h1>
         <ol>
-            {exPlayers.map((p, k) => (<li key={k}>{p.name} Foobarbaz: {p.sum}</li>))}
+            {exPlayers.map((p, k) => (<li key={k}>{p.name} Score: {p.sum}</li>))}
         </ol>
         <button onClick={() => {
             setScoring(true);
