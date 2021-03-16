@@ -14,7 +14,7 @@ mix
       ]
     },
     resolve: {
-      extensions: ["*", ".js", ".jsx", ".vue", ".ts", ".tsx"]
+      extensions: [".js", ".jsx", ".vue", ".ts", ".tsx"]
     }
   })
   .setPublicPath('dist')
